@@ -82,6 +82,8 @@ module AuthorizeNet::API
     
     def send_request(xml)
       url = URI.parse(@gateway)
+      logger_url = Logger.new("authorize_url.log")
+      logger_url.debug("#{DateTime.now} #{url.to_s}")
 
       httpRequest = Net::HTTP::Post.new(url.path)
       httpRequest.content_type = 'text/xml'
